@@ -1,14 +1,14 @@
 /*==============================================================================
 	Sistema de incendio para el servidor Insonmio RP
 	Dias de desarrollo:
-   	 - Primer  día: 31/10/2018
-   	 - Segundo día: 01/11/2018
-     - Tercer  día: 02/11/2018
-   	 - Cuarto  día  03/11/2018
+   	 - Primer  dÃ­a: 31/10/2018
+   	 - Segundo dÃ­a: 01/11/2018
+     - Tercer  dÃ­a: 02/11/2018
+   	 - Cuarto  dÃ­a  03/11/2018
 	Actualizaciones:
-	 - Primera actualización: 31/10/2018
-	 - Segunda actualización: 03/11/2018
-	 - Ultima  actualizaciónn 03/11/2018 Por Nahuel_Martino [Remake del sistema]
+	 - Primera actualizaciÃ³n: 31/10/2018
+	 - Segunda actualizaciÃ³n: 03/11/2018
+	 - Ultima  actualizaciÃ³nn 03/11/2018 Por Nahuel_Martino [Remake del sistema]
 ==============================================================================*/
 #include <a_samp>
 #include <zcmd>
@@ -93,10 +93,10 @@ timer IniciarIncendio[80000]()
 {
 	if(ServerInfo[Incendio]) return 0;
     ServerInfo[Incendio] = true;
-	for(new i; i<sizeof(FireSpawns); i++) ServerInfo[Object][i] = CreateDynamicObject(18690,FireSpawns[i][0],FireSpawns[i][1],FireSpawns[i][2],0,0,0,0,-1,-1,300.0);
+	for(new i = 0; i != sizeof(FireSpawns); ++i) ServerInfo[Object][i] = CreateDynamicObject(18690,FireSpawns[i][0],FireSpawns[i][1],FireSpawns[i][2],0,0,0,0,-1,-1,300.0);
 	ServerInfo[Asistencia] = true;
-	SendClientMessageToAll(-1,"{37FC00}[Noticias/LS]: {D9D9D9}¡Se ha notificado un par de incendios en el bosque a las afueras de la ciudad!");
-	SendClientMessageToAll(-1,"¿Te vas a reportar para ir al bosque para apagar el incendio? escribe /sivoy dentro de estos 20 segundos");
+	SendClientMessageToAll(-1,"{37FC00}[Noticias/LS]: {D9D9D9}Â¡Se ha notificado un par de incendios en el bosque a las afueras de la ciudad!");
+	SendClientMessageToAll(-1,"Â¿Te vas a reportar para ir al bosque para apagar el incendio? escribe /sivoy dentro de estos 20 segundos");
 	defer Asistencias();
 	return 1;
 }
@@ -109,7 +109,7 @@ public OnFilterScriptInit()
 	UsePlayerPedAnims();
 	print("\n=============================");
 	print("  Sistema de incendios V2.0    ");
-	print(" FS creado por Johan Sánchez   ");
+	print(" FS creado por Johan SÃ¡nchez   ");
 	print("  Ayudantes: Nahuel_Martino    ");
 	print("=============================\n");
 	return 1;
@@ -154,7 +154,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
 	if(ServerInfo[Incendio] && PlayerInfo[playerid][Asistiendo] == 2 && HOLDING(KEY_AIM | KEY_FIRE) && (GetPlayerWeapon(playerid) == 42))
 	{
-        for(new i; i<sizeof(FireSpawns); i++)
+        for(new i = 0; i != sizeof(FireSpawns); ++i)
 		{
 			if(IsPlayerInRangeOfPoint(playerid,5.0,FireSpawns[i][0],FireSpawns[i][1],FireSpawns[i][2]) && IsValidDynamicObject(ServerInfo[Object][i]))
 			{
