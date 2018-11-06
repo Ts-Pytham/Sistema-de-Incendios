@@ -61,7 +61,7 @@ forward OnFilterScriptInit();
 
 public OnGameModeInit()
 {
-	
+	printf("OnGameo");
 	if (SSCANF_gInit == -1)
 	{
 		SSCANF_Init(GetMaxPlayers(), INVALID_PLAYER_ID, MAX_PLAYER_NAME);
